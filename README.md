@@ -14,7 +14,7 @@ The main goal of this project is to build an ETL (Extract, Transform, Load) pipe
 - AWS CLI (for local testing)
 
 
-### Instructions to run the project
+### Instructions to setup the project
 
 1. Clone the github repository using this link
     https://github.com/pratikp676/etl-fetch-aws-sqs.git
@@ -62,3 +62,21 @@ The project is structured as follows:
 - `tests/`: Folder containing unit tests for the application modules.
 - `docker-compose.yml`: Docker Compose configuration file to set up the local development environment.
 - `requirements.txt`: File containing the required Python packages for the project.
+
+
+## Running the ETL Pipeline: 
+
+Run the following command from the project directory's root to launch the ETL pipeline:
+```
+python -m app.main
+```
+Using this command, records will be added to the PostgreSQL database by reading messages from the SQS Queue, processing them to extract and mask the appropriate data, and then inserting the entries.
+
+
+## Running Unit Tests:
+
+Execute the following command from the project directory's root to run the unit tests.
+```
+pytest tests/
+```
+The `tests/` folder's tests will all be run by this command, and the results will be shown.
