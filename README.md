@@ -80,3 +80,44 @@ Execute the following command from the project directory's root to run the unit 
 pytest tests/
 ```
 The `tests/` folder's tests will all be run by this command, and the results will be shown.
+
+
+## Assumptions: 
+
+1. The JSON data in the SQS Queue has a uniform format and includes fields such as `user_id`, `device_type`, `ip`, `device_id`, `locale`, `app_version`, and `create_date`.
+2. To maintain uniqueness while making sure the original data cannot be readily recovered, the PII data (IP and device_id) can be masked using a one-way hashing method (e.g., `SHA-256`).
+3. The proper table schema for storing the processed records is configured in the PostgreSQL database.
+4. The local development environment is configured by the given Docker Compose file, and local testing doesn't require any additional configuration.
+5. Advanced features like scheduling or error handling are not included in the ETL pipeline because it is intended to be run as a standalone script.
+
+
+## Next Steps: 
+
+1. Increase the number of tries for reading from SQS and writing to PostgreSQL and add error handling.
+2. To track the operation of the application and identify issues, use logging and monitoring.
+3. To process fresh data on a regular basis, provide a scheduling mechanism or make the ETL pipeline accessible as a service.
+4. Optimise data processing to increase performance, for as by processing messages in batches.
+5. Incorporate end-to-end testing and integration testing into testing plan.
+
+
+### Deployment in Production: 
+
+We could utilise a managed container orchestration service, such as AWS Fargate or Kubernetes, to deploy this application in production; this would make it simple for us to manage, scale, and monitor the application in a real-world setting.
+
+
+### Production-Ready Components:
+
+We may incorporate the following elements to make this application production-ready:
+
+1. Centralised logging for simple log management and analysis using services like AWS CloudWatch or the ELK Stack (Elasticsearch, Logstash, Kibana).
+2. Monitoring and alerting the application's performance and overall health using technologies like Grafana, Prometheus, or Datadog.
+3. A CI/CD pipeline for automated application development, testing, and deployment.
+
+
+### Scalability:
+
+Finally, depending on our development environment, we might employ the following strategies to scale this application with a rising dataset:
+
+1. Implement horizontal scaling by adding extra ETL application instances to enable concurrent data processing.
+2. Use appropriate indexing, partitioning, and sharding algorithms to improve database performance.
+3. To handle high throughput and enable data streaming, use a message broker such as Apache Kafka or Amazon Kinesis.
