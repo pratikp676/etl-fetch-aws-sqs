@@ -3,7 +3,7 @@
 The main goal of this project is to build an ETL (Extract, Transform, Load) pipeline that will read JSON data from an AWS SQS Queue containing user login behaviour, mask fields that include personally identifiable information (PII), and publish the converted data to a PostgreSQL database.
 
 
-# Project Setup
+## Project Setup
 
 ### Requirements
 
@@ -47,7 +47,7 @@ Then, execute the following command:
     ```
 
 
-# Project Structure
+## Project Structure
 
 The project is structured as follows:
 
@@ -64,7 +64,7 @@ The project is structured as follows:
 - `requirements.txt`: File containing the required Python packages for the project.
 
 
-# Running the ETL Pipeline: 
+## Running the ETL Pipeline: 
 
 Run the following command from the project directory's root to launch the ETL pipeline:
 ```
@@ -73,7 +73,7 @@ python -m app.main
 Using this command, records will be added to the PostgreSQL database by reading messages from the SQS Queue, processing them to extract and mask the appropriate data, and then inserting the entries.
 
 
-# Running Unit Tests:
+## Running Unit Tests:
 
 Execute the following command from the project directory's root to run the unit tests.
 ```
@@ -82,7 +82,7 @@ pytest tests/
 The `tests/` folder's tests will all be run by this command, and the results will be shown.
 
 
-# Assumptions: 
+## Assumptions: 
 
 1. The JSON data in the SQS Queue has a uniform format and includes fields such as `user_id`, `device_type`, `ip`, `device_id`, `locale`, `app_version`, and `create_date`.
 2. To maintain uniqueness while making sure the original data cannot be readily recovered, the PII data (IP and device_id) can be masked using a one-way hashing method (e.g., `SHA-256`).
@@ -91,7 +91,7 @@ The `tests/` folder's tests will all be run by this command, and the results wil
 5. Advanced features like scheduling or error handling are not included in the ETL pipeline because it is intended to be run as a standalone script.
 
 
-# Next Steps: 
+## Next Steps: 
 
 1. Increase the number of tries for reading from SQS and writing to PostgreSQL and add error handling.
 2. To track the operation of the application and identify issues, use logging and monitoring.
@@ -100,12 +100,12 @@ The `tests/` folder's tests will all be run by this command, and the results wil
 5. Incorporate end-to-end testing and integration testing into testing plan.
 
 
-# Deployment in Production: 
+## Deployment in Production: 
 
 We could utilise a managed container orchestration service, such as AWS Fargate or Kubernetes, to deploy this application in production; this would make it simple for us to manage, scale, and monitor the application in a real-world setting.
 
 
-# Production-Ready Components:
+## Production-Ready Components:
 
 We may incorporate the following elements to make this application production-ready:
 
@@ -114,7 +114,7 @@ We may incorporate the following elements to make this application production-re
 3. A CI/CD pipeline for automated application development, testing, and deployment.
 
 
-# Scalability:
+## Scalability:
 
 Finally, depending on our development environment, we might employ the following strategies to scale this application with a rising dataset:
 
