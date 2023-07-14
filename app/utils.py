@@ -28,4 +28,3 @@ def mask_data(data,method):
         "create_date": datetime.utcnow().date()
     }
     return masked_data
-
